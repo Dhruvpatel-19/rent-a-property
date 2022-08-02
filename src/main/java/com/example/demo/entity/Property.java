@@ -28,12 +28,23 @@ public class Property {
     @JoinColumn(name="property_id_fk",referencedColumnName = "propertyId")
     private List<FlatAmenities> flatAmenities;
 
+    @OneToOne(targetEntity = Category.class , cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id_fk" , referencedColumnName = "categoryId")
+    private Category category;
+
+    @OneToOne(targetEntity = Type.class , cascade = CascadeType.ALL)
+    @JoinColumn(name = "type_id_fk" , referencedColumnName = "typeId")
+    private Type type;
+
+    @OneToOne(targetEntity = Address.class , cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id_fk" , referencedColumnName = "addressId")
+    private Address address;
 
 
     public Property() {
     }
 
-    public Property(int propertyId, int action, int ageYears, String furnishing, String availableFrom, String availableTo, String parkingAvailability, LocalDateTime createdAt, List<SocietyAmenities> societyAmenities, List<FlatAmenities> flatAmenities) {
+    public Property(int propertyId, int action, int ageYears, String furnishing, String availableFrom, String availableTo, String parkingAvailability, LocalDateTime createdAt, List<SocietyAmenities> societyAmenities, List<FlatAmenities> flatAmenities, Category category) {
         this.propertyId = propertyId;
         this.action = action;
         this.ageYears = ageYears;
@@ -44,6 +55,7 @@ public class Property {
         this.createdAt = createdAt;
         this.societyAmenities = societyAmenities;
         this.flatAmenities = flatAmenities;
+        this.category = category;
     }
 
     public int getPropertyId() {
@@ -124,5 +136,13 @@ public class Property {
 
     public void setFlatAmenities(List<FlatAmenities> flatAmenities) {
         this.flatAmenities = flatAmenities;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
