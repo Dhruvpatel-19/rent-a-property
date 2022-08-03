@@ -13,14 +13,15 @@ public class Favourites {
     private LocalDateTime createdAt;
 
     @ManyToMany(targetEntity = Property.class , cascade = CascadeType.ALL)
-    List<Property> properties;
+    private List<Property> properties;
 
     public Favourites() {
     }
 
-    public Favourites(int favId, LocalDateTime createdAt) {
+    public Favourites(int favId, LocalDateTime createdAt, List<Property> properties) {
         this.favId = favId;
         this.createdAt = createdAt;
+        this.properties = properties;
     }
 
     public int getFavId() {
@@ -37,5 +38,13 @@ public class Favourites {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public List<Property> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(List<Property> properties) {
+        this.properties = properties;
     }
 }
